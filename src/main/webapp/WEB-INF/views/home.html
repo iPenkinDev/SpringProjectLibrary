@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h2>Digital Library</h2>
+
+<br/>
+<hr/>
+
+<table>
+    <tr>
+        <th>
+            <form th:method="GET" th:action="@{/people}">
+                <input type="submit" value="People"/></form>
+        </th>
+        <th>
+            <form th:method="GET" th:action="@{/books}">
+                <input type="submit" value="Books"/></form>
+        </th>
+    </tr>
+</table>
+</body>
+</html>

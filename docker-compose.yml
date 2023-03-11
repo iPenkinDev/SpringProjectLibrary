@@ -1,0 +1,50 @@
+#version: '2.17.1'
+#services:
+##  tomcat:
+##    image: spring-project
+##    ports:
+##      - "8080:8080"
+#  db:
+#    image: spring_db:latest
+#    ports:
+#      - "5432:5432"
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: postgres
+#      POSTGRES_DB: project1
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db
+
+version: '3'
+services:
+  db:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: project1
+    ports:
+      - "5432:5432"
+      - "8080:8080"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  app:
+    image: spring_app:latest
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: project1
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    network_mode:
+      service:db
+volumes:
+  db-data:

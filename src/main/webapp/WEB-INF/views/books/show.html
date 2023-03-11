@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Book</title>
+</head>
+<body>
+<h2>Show Book</h2>
+<br/>
+<hr/>
+
+<table>
+    <tr>
+        <th>
+            <form th:method="GET" th:action="@{/home}">
+                <input type="submit" value="Home"/></form>
+        </th>
+        <th>
+            <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
+                <input type="submit" value="Edit"/></form>
+        </th>
+        <th>
+            <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}">
+                <input type="submit" value="Delete"/></form>
+        </th>
+    </tr>
+</table>
+
+<h4 th:text="${'Title: ' + book.getTitle()}">VALUE</h4>
+<h4 th:text="${'Author: ' + book.getAuthor()}">VALUE</h4>
+<h4 th:text="${'Year: ' + book.getYear()}">VALUE</h4>
+
+<div th:if="${owner}">
+    <span>The book is now: </span> <span th:text="${owner.getName()}">Person Name</span>
+
+    <form th:method="PATCH" th:action="@{/books/{id}/return_book(id=${book.getId()})}">
+        <input type="submit" value="Release the book"/>
+    </form>
+</div>
+
+<div th:if="${people}">
+    <span>This book is free. Assign it to a person?</span>
+    <form th:method="PATCH" th:action="@{/books/{id}/assign_book(id=${book.getId()})}">
+        <label for="person">Choose person</label>
+        <select th:object="${person}" th:field="*{id}" id="person">
+            <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getName()}">
+            </option>
+        </select>
+        <input type="submit" value="Assign book"/>
+    </form>
+</div>
+
+<hr/>
+
+</body>
+</html>

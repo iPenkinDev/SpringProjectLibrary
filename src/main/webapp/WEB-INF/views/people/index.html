@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+</head>
+<body>
+
+<h2>All people</h2>
+<br/>
+<hr/>
+
+<table>
+    <tr>
+        <th>
+            <form th:method="GET" th:action="@{/home}">
+                <input type="submit" value="Home"/>
+            </form>
+        </th>
+        <th>
+            <form th:method="GET" th:action="@{/people/new}">
+                <input type="submit" value="Create new person"/>
+            </form>
+        </th>
+    </tr>
+</table>
+
+<hr/>
+
+<table border="1">
+    <tr>
+        <th>
+            <div>
+                Name
+            </div>
+        </th>
+        <th>
+            <div>
+                Age
+            </div>
+        </th>
+        <th>
+            <div>
+                Edit
+            </div>
+        </th>
+    </tr>
+    <tr th:each="person : ${people}">
+        <td>
+            <span th:text="${person.getName()}"/>
+        </td>
+        <td>
+            <span th:text="${person.getAge()}"/>
+        </td>
+        <td>
+            <a th:href="@{/people/{id}(id=${person.getId()})}"
+               th:text="EDIT">user</a>
+        </td>
+    </tr>
+</table>
+
+
+
+</body>
+</html>

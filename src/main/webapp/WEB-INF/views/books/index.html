@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All books</title>
+</head>
+<body>
+<h2>All Books</h2>
+<br/>
+<hr/>
+
+<table>
+    <tr>
+        <th>
+            <form th:method="GET" th:action="@{/home}">
+                <input type="submit" value="Home"/></form>
+        </th>
+        <th>
+            <form th:method="GET" th:action="@{/books/new}">
+                <input type="submit" value="Create new book"/></form>
+        </th>
+    </tr>
+</table>
+
+<hr/>
+
+<table border="1">
+    <tr>
+        <th>
+            <div>
+                Title
+            </div>
+        </th>
+        <th>
+            <div>
+                Author
+            </div>
+        </th>
+        <th>
+            <div>
+                Year
+            </div>
+        </th>
+    </tr>
+    <tr th:each="book : ${books}">
+        <td>
+            <span th:text="${book.getTitle()}"/>
+        </td>
+        <td>
+            <span th:text="${book.getAuthor()}"/>
+        </td>
+        <td>
+            <span th:text="${book.getYear()}"/>
+        </td>
+        <td>
+            <a th:href="@{/books/{id}(id=${book.getId()})}"
+               th:text="SHOW">book</a>
+        </td>
+    </tr>
+</table>
+
+<br/>
+<hr/>
+
+
+
+
+
+</body>
+</html>
