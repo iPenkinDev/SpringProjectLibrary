@@ -22,9 +22,11 @@ The program imitates the work of a digital library.
  2. Apache Maven
  3. Docker
  
- **Build** 
+ **Build**
+ 
  ```mvn clean install```  
  ```docker build -t spring_app .```  
  ```docker-compose up --build```  
  **In browser** 
+ 
  ```http://localhost:8080/SpringProjectLibrary/home```
