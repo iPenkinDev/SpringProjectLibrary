@@ -16,16 +16,15 @@ The program imitates the work of a digital library.
  -Lombok  
  -Docker  
  
- ## Deploy application
- **Prerequisites**
- 
+ ### Deploy application
+ **Prerequisites** 
  1. Java 17+
  2. Apache Maven
  3. Docker
  
- ### Build
+ **Build**
  ```mvn clean install```  
  ```docker build -t spring_app .```  
  ```docker-compose up --build```  
- ### Open
+ **In browser**
  ```http://localhost:8080/SpringProjectLibrary/home```
